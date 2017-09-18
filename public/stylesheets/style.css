@@ -1,5 +1,33 @@
 @import url(vendor/normalize.css);
 @import url(vendor/skeleton.css);
+.modal-darkness {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(20, 20, 20, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none; }
+  .modal-darkness .modal-container {
+    width: 45%;
+    min-width: 450px;
+    max-height: 450px;
+    padding: 25px;
+    background: white;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    margin-left: -22.5%; }
+  .modal-darkness h2 {
+    display: inline; }
+  .modal-darkness span .close {
+    position: absolute;
+    display: block;
+    cursor: pointer; }
+  .modal-darkness .modal-header {
+    border-bottom: 1px solid black;
+    margin-bottom: 20px; }
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }

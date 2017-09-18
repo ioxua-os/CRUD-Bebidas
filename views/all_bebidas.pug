@@ -1,7 +1,10 @@
 extends layout
+include modal
 
 block content
-	table.u-full-width
+	+modal('confirm', 'Deseja mesmo deletar?')
+		p Esta operação não pode ser desfeita
+	table
 		thead
 			tr
 				th Nome
@@ -20,7 +23,23 @@ block content
 						td= bebida.marca
 						td= bebida.ano
 						td= bebida.preco
-						td Editar
-						td Excluir
+						td
+							a(href="/bebidas/edit/" + bebida.id) Editar
+						td
+							a(href="/bebidas/" + bebida.id).delete Excluir
 		else
 			h3.error Nenhuma bebida cadastrada D:
+
+block javascript
+	script.
+		$(() => {
+		console.log($);
+			$(".delete").click((e) => {
+				e.preventDefault();
+				$("#confirm").showModal();
+			});
+			$(".close").click((e) => {
+				e.preventDefault();
+				$("#confirm").hideModal();
+			})
+		});
