@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	table.u-full-width
+		thead
+			tr
+				th Nome
+				th Tipo
+				th Marca
+				th Ano
+				th Preço
+				th Editar
+				th Excluir
+		if bebidas.length > 0
+			tbody
+				each bebida in bebidas
+					tr
+						td= bebida.nome
+						td= bebida.tipo
+						td= bebida.marca
+						td= bebida.ano
+						td= bebida.preco
+						td Editar
+						td Excluir
+		else
+			h3.error Nenhuma bebida cadastrada D:
