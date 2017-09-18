@@ -1,8 +1,17 @@
+@import url(vendor/normalize.css);
+@import url(vendor/skeleton.css);
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
   color: #00B7FF; }
+
+.title {
+  color: #036DD9;
+  font-weight: 600; }
+
+.error {
+  color: #ED063C; }
 
 /*# sourceMappingURL=style.css.map */

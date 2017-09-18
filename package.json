@@ -11,7 +11,7 @@
   },
   "homepage": "https://github.com/ioxua-os/CRUD-Bebidas#readme",
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "NODE_ENV=development nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -28,9 +28,14 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "format-number": "^3.0.0",
+    "method-override": "^2.3.9",
     "morgan": "~1.8.1",
     "node-sass-middleware": "0.9.8",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
