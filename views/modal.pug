@@ -1,0 +1,13 @@
+mixin modal(id, title)
+	.modal-darkness(id=id)
+		.modal-container
+			.modal-header
+				h2= title
+				span.u-pull-right
+					a.close X
+
+			.modal-content
+				if block
+					block
+				else
+					p Ocorreu um erro, tente novamente mais tarde D:

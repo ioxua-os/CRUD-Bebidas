@@ -1,0 +1,32 @@
+extends layout
+
+block back
+	a.button(href='../bebidas') Voltar
+
+block content
+	form
+		.row
+			.six.columns
+				label(for='nomeBebida') Nome
+				input.u-full-width(type='text', name='nomeBebida', id='nomeBebida')
+
+			.six.columns
+				label(for='marcaBebida') Marca
+				input.u-full-width(type='text', name='marcaBebida', id='marcaBebida')
+
+		.row
+			.one-third.column
+				label(for='anoBebida') Ano
+				input.u-full-width(type='text', name='anoBebida', id='anoBebida')
+
+			.one-third.column
+				label(for='tipoBebida') Tipo
+				select.u-full-width(type='text', name='tipoBebida', id='tipoBebida')
+					each tipo in tipos
+						option(value=tipo.id)= tipo.nome
+
+			.one-third.column
+				label(for='precoBebida') Preço
+				input.u-full-width(type='text', name='precoBebida', id='precoBebida')
+
+				input.button-primary.u-pull-right(type='submit' value='Cadastrar')
