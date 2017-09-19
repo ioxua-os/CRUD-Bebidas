@@ -1,7 +1,7 @@
-var tipos = require('./rep-tipos')
-var formatNumber = require('format-number');
+const tipos = require('./rep-tipos')
+const formatNumber = require('format-number');
 
-var format = formatNumber({
+const format = formatNumber({
 	prefix: 'R$',
 	integerSeparator: '.',
 	decimal: ',',
@@ -43,6 +43,16 @@ let bebidas = [
 		preco: 19.9
 	}];
 
+function nextId() {
+	let last = 0
+	bebidas.forEach((elem) => {
+		if(elem.id > last)
+			last = elem.id
+	})
+
+	return ++last
+}
+
 module.exports = {
 	all: () => {
 		bebidas.forEach((bebida, index) => {
@@ -76,11 +86,17 @@ module.exports = {
 				elem.tipo = object.tipo
 				elem.marca = object.marca
 				elem.ano = object.ano
-				elem.preco = object.preco
+				elem.preco = format(object.preco)
 			}
 		})
 	},
 	add: (object) => {
+		object.id = nextId()
+		object.tipo = tipos.byId(object.tipo)
+
+		if(typeof bebida.preco === "number")
+			object.preco = format(object.preco)
+		
 		bebidas.push(object)
 	}
 }

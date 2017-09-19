@@ -4,7 +4,16 @@ var tipos = require('../persistence/rep-tipos')
 
 var router = express.Router();
 
-/* GET users listing. */
+function mapBodyToBebida(body) {
+	return {
+		nome: body.nomeBebida,
+		tipo: parseInt(body.tipoBebida, 10),
+		marca: body.marcaBebida,
+		ano: parseInt(body.anoBebida, 10),
+		preco: body.precoBebida
+	}
+}
+
 router.route('/')
 	.get((req, res, next) => {
 		var listagem = bebidas.all()
@@ -36,17 +45,14 @@ router.route('/:id')
 		});
 	})
 	.delete((req, res) => { // DELETE '/'
-		res.render('todo', {
-			message: 'Deletar o bagulho'
-		})
-		console.log(req.params)
+		bebidas.delete(req.params.id)
+		res.redirect('/bebidas')
 	})
 
 router.post('/new', (req, res) => {
-	res.render('todo', {
-		message: 'Efetivamente cadastrar a bebida'
-	});
-		console.log(req.params)
+	let bebida = mapBodyToBebida(req.body)
+	bebidas.add(bebida)
+	res.redirect('/bebidas')
 });
 
 router.route('/edit/:id')
@@ -62,11 +68,10 @@ router.route('/edit/:id')
 		});
 	})
 	.post((req, res) => {
-		res.render('todo', {
-			message: 'Editar a bebida na persistência'
-		});
-
-		console.log(req.params)
+		let bebida = mapBodyToBebida(req.body)
+		console.log(bebida)
+		bebidas.edit(req.params.id, bebida)
+		res.redirect('/bebidas')
 	});
 
 module.exports = router;
