@@ -4,42 +4,48 @@ include modal
 block content
 	+modal('confirm', 'Deseja mesmo deletar?')
 		p Esta operação não pode ser desfeita
-	table
-		thead
-			tr
-				th Nome
-				th Tipo
-				th Marca
-				th Ano
-				th Preço
-				th Editar
-				th Excluir
-		if bebidas.length > 0
-			tbody
-				each bebida in bebidas
+	.row
+		.ten.columns
+			table.u-full-width
+				thead
 					tr
-						td= bebida.nome
-						td= bebida.tipo
-						td= bebida.marca
-						td= bebida.ano
-						td= bebida.preco
-						td
-							a(href="/bebidas/edit/" + bebida.id) Editar
-						td
-							a(href="/bebidas/" + bebida.id).delete Excluir
-		else
-			h3.error Nenhuma bebida cadastrada D:
+						th Nome
+						th Tipo
+						th Marca
+						th Ano
+						th Preço
+						th Editar
+						th Excluir
+				if bebidas.length > 0
+					tbody
+						each bebida in bebidas
+							tr
+								td= bebida.nome
+								td= bebida.tipo
+								td= bebida.marca
+								td= bebida.ano
+								td= bebida.preco
+								td
+									a(href="/bebidas/edit/" + bebida.id) Editar
+								td
+									a.delete(href="/bebidas/" + bebida.id) Excluir
+				else
+					h3.error Nenhuma bebida cadastrada D:
+		.two.columns
+			a.button.button-primary(href='/bebidas/create') Nova Bebida
 
 block javascript
 	script.
 		$(() => {
-		console.log($);
-			$(".delete").click((e) => {
+			$(".delete").click(function(e) {
 				e.preventDefault();
-				$("#confirm").showModal();
+				$.redirect($(this).attr('href'), {
+					'_method': 'DELETE'
+				});
+				//$("#confirm").showModal();
 			});
-			$(".close").click((e) => {
+			/*$(".close").click((e) => {
 				e.preventDefault();
 				$("#confirm").hideModal();
-			})
+			})*/
 		});

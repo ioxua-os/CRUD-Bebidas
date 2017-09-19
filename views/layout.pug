@@ -9,9 +9,12 @@ html
 			integrity='sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw',
 			crossorigin='anonymous')
 	body
-		h1.title= title
-		block content
+		.container
+			block back
+			h1.title= title
+			block content
 
 	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+	script(src='https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js')
 	script(src='/javascripts/modal.js')
 	block javascript

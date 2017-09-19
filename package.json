@@ -2,8 +2,6 @@
   "name": "crud-bebidas",
   "version": "1.0.0",
   "description": "A small project testing some possibilities using Espr\u001b[A\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b\u001b[3~\u001b[3~\u001b[C\u001b[C\u001b[3~\u001b[3~",
-  "main": "index.js",
-  "private": true,
   "author": "Yehoshua Oliveira",
   "license": "MIT",
   "bugs": {
@@ -11,7 +9,7 @@
   },
   "homepage": "https://github.com/ioxua-os/CRUD-Bebidas#readme",
   "scripts": {
-    "start": "NODE_ENV=development nodemon ./bin/www",
+    "start": "nodemon ./bin/www NODE_ENV=development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -28,6 +26,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-validator": "^4.1.1",
     "format-number": "^3.0.0",
     "method-override": "^2.3.9",
     "morgan": "~1.8.1",

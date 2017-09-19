@@ -42,6 +42,31 @@ router.route('/')
 		})
 	})
 
+router.get('/create', (req, res) => {
+	let listagemTipos = [
+		{
+			id: 1, nome: 'Vinho'
+		},
+		{
+			id: 2, nome: 'Uísque'
+		},
+		{
+			id: 3, nome: 'Cerveja'
+		},
+		{
+			id: 4, nome: 'Vodka'
+		},
+		{
+			id: 5, nome: 'Saquê'
+		}
+	]
+	res.render('one_bebida', {
+		title: 'Nova bebida',
+		option: 'cadastro',
+		tipos: listagemTipos
+	});
+});
+
 router.route('/:id')
 	.get((req, res) => {
 		res.render('todo', {
@@ -56,13 +81,7 @@ router.route('/:id')
 
 router.post('/new', (req, res) => {
 	res.render('todo', {
-		message: 'Cadastrar a bebida'
-	});
-});
-
-router.get('/create', (req, res) => {
-	res.render('todo', {
-		message: 'Criar a interface de cadastro de uma bebida'
+		message: 'Efetivamente cadastrar a bebida'
 	});
 });
 

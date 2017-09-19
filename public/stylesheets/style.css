@@ -17,7 +17,8 @@
     position: absolute;
     top: 15%;
     left: 50%;
-    margin-left: -22.5%; }
+    margin-left: -22.5%;
+    z-index: 2; }
   .modal-darkness h2 {
     display: inline; }
   .modal-darkness span .close {
