@@ -1,32 +1,70 @@
 extends layout
 
 block back
-	a.button(href='../bebidas') Voltar
+	a.button(
+		href=(option == 'edicao'? '../' : '../bebidas')
+	) Voltar
 
 block content
-	form
-		.row
-			.six.columns
-				label(for='nomeBebida') Nome
-				input.u-full-width(type='text', name='nomeBebida', id='nomeBebida')
+	if option == 'cadastro' || option == 'edicao'
+		form(
+			method='POST', 
+			action=(option == 'cadastro'? '/bebidas/new' 
+					: option == 'edicao'? '/bebidas/edit/' + bebida.id : '')
+		)
+			.row
+				.six.columns
+					label(for='nomeBebida') Nome
+					input.u-full-width(
+						type='text',
+						name='nomeBebida',
+						id='nomeBebida',
+						value=(option == 'edicao'? bebida.nome : '')
+					)
 
-			.six.columns
-				label(for='marcaBebida') Marca
-				input.u-full-width(type='text', name='marcaBebida', id='marcaBebida')
+				.six.columns
+					label(for='marcaBebida') Marca
+					input.u-full-width(
+						type='text',
+						name='marcaBebida',
+						id='marcaBebida',
+						value=(option == 'edicao'? bebida.marca : '')
+					)
 
-		.row
-			.one-third.column
-				label(for='anoBebida') Ano
-				input.u-full-width(type='text', name='anoBebida', id='anoBebida')
+			.row
+				.one-third.column
+					label(for='anoBebida') Ano
+					input.u-full-width(
+						type='text',
+						name='anoBebida',
+						id='anoBebida',
+						value=(option == 'edicao'? bebida.ano : '')
+					)
 
-			.one-third.column
-				label(for='tipoBebida') Tipo
-				select.u-full-width(type='text', name='tipoBebida', id='tipoBebida')
-					each tipo in tipos
-						option(value=tipo.id)= tipo.nome
+				.one-third.column
+					label(for='tipoBebida') Tipo
+					select.u-full-width(type='text', name='tipoBebida', id='tipoBebida')
+						each tipo in tipos
+							if option != 'edicao'
+								option(value=tipo.id)= tipo.nome
+							else
+								option(
+									value=tipo.id,
+									selected=(bebida.tipo.nome == tipo.nome? true : false)
+								)= tipo.nome
 
-			.one-third.column
-				label(for='precoBebida') Preço
-				input.u-full-width(type='text', name='precoBebida', id='precoBebida')
+				.one-third.column
+					label(for='precoBebida') Preço
+					input.u-full-width(
+						type='text',
+						name='precoBebida',
+						id='precoBebida',
+						value=(option == 'edicao'? bebida.preco : ''))
 
-				input.button-primary.u-pull-right(type='submit' value='Cadastrar')
+					input.button-primary.u-pull-right(
+						type='submit',
+						value=(option == 'cadastro'? 'Cadastrar' :
+								option == 'edicao'? 'Salvar' : '')
+					 )
+	else
+		h4 É um(a) #{bebida.tipo.nome} #{bebida.marca} de #{bebida.ano} e custa em torno de #{bebida.preco}

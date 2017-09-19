@@ -20,15 +20,16 @@ block content
 					tbody
 						each bebida in bebidas
 							tr
-								td= bebida.nome
-								td= bebida.tipo
+								td
+									a(href='/bebidas/' + bebida.id)= bebida.nome
+								td= bebida.tipo.nome
 								td= bebida.marca
 								td= bebida.ano
 								td= bebida.preco
 								td
-									a(href="/bebidas/edit/" + bebida.id) Editar
+									a(href='/bebidas/edit/' + bebida.id) Editar
 								td
-									a.delete(href="/bebidas/" + bebida.id) Excluir
+									a.delete(href='/bebidas/' + bebida.id) Excluir
 				else
 					h3.error Nenhuma bebida cadastrada D:
 		.two.columns
@@ -37,15 +38,15 @@ block content
 block javascript
 	script.
 		$(() => {
-			$(".delete").click(function(e) {
+			$('.delete').click(function(e) {
 				e.preventDefault();
 				$.redirect($(this).attr('href'), {
 					'_method': 'DELETE'
 				});
-				//$("#confirm").showModal();
+				//$('#confirm').showModal();
 			});
-			/*$(".close").click((e) => {
+			/*$('.close').click((e) => {
 				e.preventDefault();
-				$("#confirm").hideModal();
+				$('#confirm').hideModal();
 			})*/
 		});
