@@ -1,8 +1,0 @@
-extends layout
-
-block content
-	p Welcome to #{title}
-	form(method='POST' action='/bebidas')
-		input(type='hidden' name='_method' value='DELETE')
-		input(type='text' name='content')
-		input(type='submit').button-primary
