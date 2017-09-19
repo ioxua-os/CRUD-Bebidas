@@ -1,4 +1,5 @@
 var express = require('express')
+var validator = require('express-validator')
 var path = require('path')
 var favicon = require('serve-favicon')
 var logger = require('morgan')
@@ -26,6 +27,7 @@ app.set('view engine', 'pug')
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(validator())
 app.use(methodOverride(function (req, res) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     var method = req.body._method

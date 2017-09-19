@@ -1,40 +1,13 @@
 var express = require('express');
-var router = express.Router();
-var formatNumber = require('format-number');
+var bebidas = require('../persistence/rep-bebidas')
+var tipos = require('../persistence/rep-tipos')
 
-var format = formatNumber({
-	prefix: 'R$',
-	integerSeparator: '.',
-	decimal: ',',
-	truncate: 2,
-	padRight: 2
-});
+var router = express.Router();
 
 /* GET users listing. */
 router.route('/')
 	.get((req, res, next) => {
-		var listagem = [
-				{
-					id: 1,
-					nome: "Nome Legal",
-					tipo: "Whiskey",
-					marca: "Johnny Walker",
-					ano: 1990,
-					preco: 70
-				},
-				{
-					id: 2,
-					nome: "Original",
-					tipo: "Vinho Tinto",
-					marca: "Periquita",
-					ano: 2013,
-					preco: 38.8
-				}
-		];
-
-		listagem.forEach((bebida, index) => {
-			bebida.preco = format(bebida.preco)
-		})
+		var listagem = bebidas.all()
 
 		res.render('all_bebidas', {
 			title: "Listagem",
@@ -43,23 +16,8 @@ router.route('/')
 	})
 
 router.get('/create', (req, res) => {
-	let listagemTipos = [
-		{
-			id: 1, nome: 'Vinho'
-		},
-		{
-			id: 2, nome: 'Uísque'
-		},
-		{
-			id: 3, nome: 'Cerveja'
-		},
-		{
-			id: 4, nome: 'Vodka'
-		},
-		{
-			id: 5, nome: 'Saquê'
-		}
-	]
+	let listagemTipos = tipos.all()
+
 	res.render('one_bebida', {
 		title: 'Nova bebida',
 		option: 'cadastro',
@@ -69,32 +27,46 @@ router.get('/create', (req, res) => {
 
 router.route('/:id')
 	.get((req, res) => {
-		res.render('todo', {
-			message: 'Exibir a view de detalhes de uma bebida'
+		let bebida = bebidas.byId(req.params.id)
+
+		res.render('one_bebida', {
+			title: bebida.nome,
+			bebida: bebida,
+			option: 'exibicao'
 		});
 	})
 	.delete((req, res) => { // DELETE '/'
 		res.render('todo', {
 			message: 'Deletar o bagulho'
 		})
+		console.log(req.params)
 	})
 
 router.post('/new', (req, res) => {
 	res.render('todo', {
 		message: 'Efetivamente cadastrar a bebida'
 	});
+		console.log(req.params)
 });
 
 router.route('/edit/:id')
 	.get((req, res) => {
-		res.render('todo', {
-			message: 'Exibir a view de edição'
+		let bebida = bebidas.byId(req.params.id)
+		let listaTipos = tipos.all()
+
+		res.render('one_bebida', {
+			title: bebida.nome,
+			bebida: bebida,
+			tipos: listaTipos,
+			option: 'edicao'
 		});
 	})
 	.post((req, res) => {
 		res.render('todo', {
 			message: 'Editar a bebida na persistência'
 		});
+
+		console.log(req.params)
 	});
 
 module.exports = router;
