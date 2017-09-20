@@ -1,5 +1,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
-# CRUD Bebidas
+# drink.js
+
+## Introduction
 A little project exploring Express.js, free for use as a reference of some kind
 
 ## Usage
